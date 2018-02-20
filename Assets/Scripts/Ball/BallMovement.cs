@@ -73,7 +73,6 @@ public class BallMovement : MonoBehaviour {
     public void SetRandomRotation()
     {
         float randomZRotation = this.ReturnRandomBallRotationAngle();
-        Vector3 randomDirection = new Vector3(0f, 0f, randomZRotation);
         transform.rotation = Quaternion.Euler(0f, 0f, randomZRotation);
     }
 }

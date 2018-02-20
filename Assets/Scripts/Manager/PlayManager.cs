@@ -8,7 +8,7 @@ public class PlayManager : MonoBehaviour {
 
     private const string INFO_TEXT = "To start the game press \"Space\" button" +
         "\n\nDuring game press \"Esc\" to open pause menu";
-    private const int SCORE_TO_WIN = 2;
+    private const int SCORE_TO_WIN = 12;
 
     public PlayerProperties player1;
     public PlayerProperties player2;
@@ -164,8 +164,11 @@ public class PlayManager : MonoBehaviour {
         player2.GetComponent<SimpleAI>().enabled = true;
         player1.speed = player1.startSpeed;
         player1.paddleLenth = player1.startPaddleLenth;
+        player1.ResetScale();
+        player2.ResetScale();
         player2.speed = player2.startSpeed;
         player2.paddleLenth = player2.startPaddleLenth;
+
     }
 
     private void ResetBall()

@@ -9,6 +9,5 @@ public class PlayersClampSetter {
 	public void SetPlayerClampSize(GameObject player)
     {
         PlayerPositionClamp playerClamp = player.GetComponent<PlayerPositionClamp>();
-
     }
 }

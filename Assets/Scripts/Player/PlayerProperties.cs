@@ -14,10 +14,12 @@ public class PlayerProperties : MonoBehaviour {
 
     public float startSpeed;
     public float startPaddleLenth;
+    public float startScaleY;
 
     private static GameObject upBorder;
     private static GameObject downBorder;
     private int points = 0;
+    private float deltaScale;
 
     public int Points
     {
@@ -42,12 +44,24 @@ public class PlayerProperties : MonoBehaviour {
         upBorder = GameObject.Find("UpBorder");
         downBorder = GameObject.Find("DownBorder");
         startPosition = transform.position;
+        startScaleY = transform.localScale.y;
 
-        paddleLenth = PlayerProperties.CalculatePaddleLenth(gameObject);
-        playerBorder = PlayerProperties.GetPlayerBorder(paddleLenth);
+        SetLenthAndBorder();
 
         startPaddleLenth = paddleLenth;
         startSpeed = speed;
+        deltaScale = ComputeScaleFactor();
+    }
+
+    public void ResetScale()
+    {
+        transform.localScale = new Vector3(transform.localScale.x, startScaleY, transform.localScale.z);
+    }
+
+    private void SetLenthAndBorder()
+    {
+        paddleLenth = PlayerProperties.CalculatePaddleLenth(gameObject);
+        playerBorder = PlayerProperties.GetPlayerBorder(paddleLenth);
     }
 
     public void ResetPosition()
@@ -75,5 +89,27 @@ public class PlayerProperties : MonoBehaviour {
 
         float boardEdgePosition = isUpper ? positionY - colliderLenth : positionY + colliderLenth;
         return boardEdgePosition;
+    }
+
+    public void ShrinkPlayer(float lenth)
+    {
+        transform.localScale -= new Vector3(0f, deltaScale, 0f);
+        SetLenthAndBorder();
+    }
+
+    public void EnlargePlayer(float lenth)
+    {
+        transform.localScale += new Vector3(0f, deltaScale, 0f);
+        SetLenthAndBorder();
+    }
+
+    private float ComputeScaleFactor()
+    {
+        return (transform.localScale.y * startScaleY) / paddleLenth;
+    }
+
+    public void ChangeSpeed(float value)
+    {
+        speed += value;
     }
 }

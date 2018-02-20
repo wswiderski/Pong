@@ -64,6 +64,11 @@ public class GUIManager : MonoBehaviour {
         if (startNewGame)
         {
             playManager.ResetGame();
+            GameObject[] powerups = GameObject.FindGameObjectsWithTag("POWERUP");
+            foreach(GameObject powerup in powerups)
+            {
+                Destroy(powerup);
+            }
         }
         menuClickSound.Play();
     }
