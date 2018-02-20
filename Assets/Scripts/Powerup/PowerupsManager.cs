@@ -41,5 +41,9 @@ public class PowerupsManager : MonoBehaviour {
         }
     }
 
-
+    public void Reset()
+    {
+        time = 0f;
+        nextPowerupTime = Random.Range(5f, 8f);
+    }
 }

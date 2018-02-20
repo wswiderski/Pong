@@ -28,6 +28,8 @@ public class PlayManager : MonoBehaviour {
     public bool gameInProgres = false;
     public bool isPauseMenuOpen = false;
 
+    private PowerupsManager powerupsManager;
+
     public bool GameStarted
     {
         set
@@ -199,6 +201,7 @@ public class PlayManager : MonoBehaviour {
         ResetBall();
         SetControl(true);
         SetBallControl(canBallMove);
+        powerupsManager.Reset();
         UpdateSocerBoard();
     }
 
