@@ -6,7 +6,7 @@ public class PowerupProperties : MonoBehaviour {
 
     public PowerupTypes powerupType;
     private float speedIncreaseFactor = 0.2f;
-    private float paddleLenthFactor = 0.05f;
+    private float paddleLenthFactor = 0.15f;
 
     public void ColectPowerup(GameObject player)
     {
@@ -42,7 +42,7 @@ public class PowerupProperties : MonoBehaviour {
 
     private void ShrinkPlayer(GameObject player)
     {
-        player.GetComponent<PlayerProperties>().ShrinkPlayer(paddleLenthFactor);
+        player.GetComponent<PlayerProperties>().EnlargePlayer(-paddleLenthFactor);
     }
 
     private void EnlargePlayer(GameObject player)

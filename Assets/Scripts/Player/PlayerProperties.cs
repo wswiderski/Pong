@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerProperties : MonoBehaviour {
 
+    private const float MIN_PADDLE_LENTH = 1.3f;
+    private const float MAX_PADDLE_LENTH = 3f;
+    private const float MIN_PADDLE_SPEED = 4f;
+    private const float MAX_PADDLE_SPEED = 6f;
+
     public PlayerType playerType;
     public float speed = 5f;
     public float paddleLenth = 0f;
@@ -19,7 +24,6 @@ public class PlayerProperties : MonoBehaviour {
     private static GameObject upBorder;
     private static GameObject downBorder;
     private int points = 0;
-    private float deltaScale;
 
     public int Points
     {
@@ -50,7 +54,6 @@ public class PlayerProperties : MonoBehaviour {
 
         startPaddleLenth = paddleLenth;
         startSpeed = speed;
-        deltaScale = ComputeScaleFactor();
     }
 
     public void ResetScale()
@@ -91,25 +94,24 @@ public class PlayerProperties : MonoBehaviour {
         return boardEdgePosition;
     }
 
-    public void ShrinkPlayer(float lenth)
-    {
-        transform.localScale -= new Vector3(0f, deltaScale, 0f);
-        SetLenthAndBorder();
-    }
-
     public void EnlargePlayer(float lenth)
     {
+        if(paddleLenth < MIN_PADDLE_LENTH || paddleLenth > MAX_PADDLE_LENTH) { return; }
+
+        float deltaScale = ComputeScaleFactor(lenth);
         transform.localScale += new Vector3(0f, deltaScale, 0f);
         SetLenthAndBorder();
     }
 
-    private float ComputeScaleFactor()
+    private float ComputeScaleFactor(float lenth)
     {
-        return (transform.localScale.y * startScaleY) / paddleLenth;
+        return (startScaleY * lenth) / startPaddleLenth;
     }
 
     public void ChangeSpeed(float value)
     {
+        if(speed < MIN_PADDLE_SPEED || speed > MAX_PADDLE_SPEED) { return; }
+
         speed += value;
     }
 }
