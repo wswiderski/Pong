@@ -26,7 +26,7 @@ public class PlayManager : MonoBehaviour {
     private GUIManager guiManager;
     private bool gameStarted = false;
     public bool gameInProgres = false;
-    private bool isPauseMenuOpen = false;
+    public bool isPauseMenuOpen = false;
 
     public bool GameStarted
     {
