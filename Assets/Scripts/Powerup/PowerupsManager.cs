@@ -20,7 +20,7 @@ public class PowerupsManager : MonoBehaviour {
     }
 
     void Update () {
-        if (!playManager.gameInProgres) { return; }
+        if (!playManager.gameInProgres && playManager.ball.canMove) { return; }
 
         time += Time.deltaTime;
 		if(time >= nextPowerupTime)
