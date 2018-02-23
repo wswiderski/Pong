@@ -41,6 +41,7 @@ public class PlayManager : MonoBehaviour {
     private void Awake()
     {
         guiManager = GetComponent<GUIManager>();
+        powerupsManager = GetComponent<PowerupsManager>();
     }
 
     void Start () {
